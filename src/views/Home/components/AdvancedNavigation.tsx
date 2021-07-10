@@ -1,12 +1,14 @@
+import styled from 'styled-components'
 import { currentConfig } from '../../../constants/configs'
 import { LiquidityPool } from '../../../constants/type'
-import { Row, Col, Typography, Collapse } from 'antd'
+import { Row, Col, Collapse } from 'antd'
 import { Currencies } from '../../../constants/currencies'
 import { brandBlue } from '../../../theme/colors'
 import useWeb3Provider from '../../../hooks/useWeb3Provider'
 import { NavLink } from 'react-router-dom'
+import Typography from '../../../components/Typography'
 
-const { Text } = Typography
+const { SecondaryText } = Typography
 
 const { Panel } = Collapse
 
@@ -16,18 +18,33 @@ interface AdvancedNavigationRowProps {
 	to: string
 }
 
-// const StyledRiskBadge = styled.div`
-// 	background: #be3333;
-// 	opacity: 0.6;
-// 	color: white;
-// 	display: inline-block;
-// 	border-radius: 4px;
-// 	padding: 4px;
-// 	font-size: 10px;
-// 	line-height: 10px;
-// 	margin-left: 10px;
-// 	height: 18px;
-// `
+const StyledCollapse = styled(Collapse)`
+	background: ${(props) => props.theme.secondary.background};
+	border-color: ${(props) => props.theme.secondary.border};
+
+	svg {
+		fill: ${(props) => props.theme.primary.font};
+	}
+`
+
+const StyledPanelTitle = styled.span`
+	color: ${(props) => props.theme.primary.font};
+`
+
+const StyledRow = styled(Row)`
+	background: ${(props) => props.theme.secondary.background};
+	padding: 18px 22px;
+	align-items: center;
+`
+
+const StyledNavLink = styled(NavLink)`
+	font-size: 18px;
+`
+
+const StyledImage = styled.img`
+	position: absolute;
+	left: 15px;
+`
 
 /**
  * Generates a row component styled with icons and a given linke.
@@ -38,14 +55,14 @@ function AdvancedNavigationRow(props: AdvancedNavigationRowProps) {
 	const { contextType, data, to } = props
 	const [token1, token2] = data.lpTokens
 	return (
-		<Row className="lp-row" justify="center">
+		<StyledRow justify="center">
 			<Col xs={24} sm={3} style={{ margin: '8px' }}>
 				<img
 					src={Currencies[token1.tokenId.toUpperCase()]?.icon}
 					height="24"
 					alt="logo"
 				/>
-				<img
+				<StyledImage
 					src={Currencies[token2.tokenId.toUpperCase()]?.icon}
 					height="24"
 					alt="logo"
@@ -53,16 +70,18 @@ function AdvancedNavigationRow(props: AdvancedNavigationRowProps) {
 			</Col>
 			<Col xs={24} sm={20}>
 				<Row>
-					<Text type="secondary">{contextType}</Text>
+					<SecondaryText type="secondary">
+						{contextType}
+					</SecondaryText>
 					{/* <StyledRiskBadge>HIGHER RISK</StyledRiskBadge> */}
 				</Row>
 				<Row>
-					<NavLink to={to} style={{ color: brandBlue }}>
+					<StyledNavLink to={to} style={{ color: brandBlue }}>
 						{data.name} →
-					</NavLink>
+					</StyledNavLink>
 				</Row>
 			</Col>
-		</Row>
+		</StyledRow>
 	)
 }
 
@@ -78,8 +97,11 @@ export default function AdvancedNavigation() {
 	)
 
 	return currentPools.length > 0 ? (
-		<Collapse expandIconPosition="right">
-			<Panel header={'Liquidity Pools'} key="1">
+		<StyledCollapse expandIconPosition="right">
+			<Panel
+				header={<StyledPanelTitle>Liquidity Pools</StyledPanelTitle>}
+				key="1"
+			>
 				{currentPools.map((pool) => (
 					<AdvancedNavigationRow
 						key={pool.name}
@@ -89,6 +111,6 @@ export default function AdvancedNavigation() {
 					/>
 				))}
 			</Panel>
-		</Collapse>
+		</StyledCollapse>
 	) : null
 }

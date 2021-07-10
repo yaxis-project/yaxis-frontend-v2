@@ -9,7 +9,9 @@ import { LanguageContext } from '../../../contexts/Language'
 import phrases from './translations'
 import Button from '../../../components/Button'
 import Input from '../../../components/Input'
-import { Row, Col, Typography, Card, Form, Result } from 'antd'
+import Card from '../../../components/Card'
+import Typography from '../../../components/Typography'
+import { Row, Col, Form, Result } from 'antd'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from '../../../utils/formatBalance'
 import { useApprovals } from '../../../state/wallet/hooks'
@@ -242,7 +244,14 @@ export default function ApprovalWrapper({ pool }) {
 	}, [account, staking, loading, onApprove, pool, t, contracts])
 
 	return (
-		<Card className="staking-card" title={<strong>{t('Staking')}</strong>}>
+		<Card
+			className="staking-card"
+			title={
+				<Text>
+					<strong>{t('Staking')}</strong>
+				</Text>
+			}
+		>
 			{body}
 		</Card>
 	)

@@ -1,8 +1,9 @@
 import React, { useState, useCallback, useEffect } from 'react'
-import { Row, Col, Slider, Tooltip, Typography, Radio } from 'antd'
+import { Row, Col, Slider, Tooltip, Radio } from 'antd'
 import { CardRow } from '../../components/ExpandableSidePanel'
+import Typography from '../Typography'
 import Value from '../../components/Value'
-import info from '../../assets/img/info.svg'
+import { InfoCircleOutlined } from '@ant-design/icons'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { CalcPages } from '../../state/user/reducer'
@@ -29,6 +30,12 @@ const StyledRadio = styled(Radio.Group)`
 const StyledRow = styled(Row)`
 	font-weight: 700;
 	margin-top: 10px;
+`
+
+const StyledInfoIcon = styled(InfoCircleOutlined)`
+	margin-left: 5px;
+	color: ${(props) => props.theme.secondary.font};
+	font-size: 15px;
 `
 
 const options = [
@@ -163,16 +170,7 @@ const APYCalculator: React.FC<Props> = ({
 						}
 					>
 						<Text type="secondary">Future Balance</Text>
-						<img
-							style={{
-								position: 'relative',
-								top: -1,
-								marginLeft: '3px',
-							}}
-							src={info}
-							height="15"
-							alt="YAXIS Supply Rewards"
-						/>
+						<StyledInfoIcon alt="YAXIS Rewards" />
 					</Tooltip>
 				}
 				secondary={

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Row, Col, Card } from 'antd'
+import { Row, Col } from 'antd'
+import Card from '../../../components/Card'
 import Button from '../../../components/Button'
 import Value from '../../../components/Value'
 import useModal from '../../../hooks/useModal'
@@ -92,5 +93,5 @@ const LegacyStake: React.FC<StakeProps> = ({ pid, tokenName }) => {
 export default LegacyStake
 
 const Label = styled.div`
-	color: ${(props) => props.theme.color.grey[400]};
+	color: ${(props) => props.theme.colors.grey[400]};
 `

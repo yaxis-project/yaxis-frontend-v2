@@ -9,8 +9,8 @@ interface ModalsContext {
 }
 
 export const Context = createContext<ModalsContext>({
-	onPresent: () => { },
-	onDismiss: () => { },
+	onPresent: () => {},
+	onDismiss: () => {},
 })
 
 const Modals: React.FC = ({ children }) => {
@@ -67,7 +67,7 @@ const StyledModalWrapper = styled.div`
 `
 
 const StyledModalBackdrop = styled.div`
-	background-color: ${(props) => props.theme.color.grey[600]};
+	background-color: ${(props) => props.theme.colors.grey[600]};
 	opacity: 0.4;
 	position: absolute;
 	top: 0;

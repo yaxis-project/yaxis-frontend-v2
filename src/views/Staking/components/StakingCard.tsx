@@ -7,7 +7,9 @@ import { LanguageContext } from '../../../contexts/Language'
 import phrases from './translations'
 import Button from '../../../components/Button'
 import Input from '../../../components/Input'
-import { Row, Col, Typography, Card, Form } from 'antd'
+import Typography from '../../../components/Typography'
+import Card from '../../../components/Card'
+import { Row, Col, Form } from 'antd'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from '../../../utils/formatBalance'
 import {
@@ -20,6 +22,7 @@ const { Text } = Typography
  * Construct a simple colomn with secondary text for use in a row.
  * @param props any
  */
+
 const TableHeader = (props: any) => (
 	<Col span={props.span}>
 		<Text style={{ float: props.float || 'none' }} type="secondary">
@@ -128,28 +131,49 @@ export default function StakingCard() {
 	const maxWithdraw = () => setWithdraw(stakedBalance.toString() || '0')
 
 	return (
-		<Card className="staking-card" title={<strong>{t('Staking')}</strong>}>
+		<Card
+			className="staking-card"
+			title={
+				<Text>
+					<strong>{t('Staking')}</strong>
+				</Text>
+			}
+		>
 			<Row gutter={24}>
 				<TableHeader value={t('Available Balance')} span={12} />
 				<TableHeader value={t('Staked Balance')} span={12} />
 			</Row>
 
 			<Row gutter={24}>
-				<Col span={12} className={'balance'}>
-					<img src={YAXIS.icon} height="24" alt="logo" />
-					<Value
-						value={getBalanceNumber(walletBalance)}
-						decimals={2}
-						numberSuffix=" YAXIS"
-					/>
+				<Col span={12}>
+					<Row align="middle" style={{ borderBottom: 'none' }}>
+						<img
+							src={YAXIS.icon}
+							height="24"
+							alt="logo"
+							style={{ marginRight: '6px' }}
+						/>
+						<Value
+							value={getBalanceNumber(walletBalance)}
+							decimals={2}
+							numberSuffix=" YAXIS"
+						/>
+					</Row>
 				</Col>
 				<Col span={12} className={'balance'}>
-					<img src={YAXIS.icon} height="24" alt="logo" />
-					<Value
-						value={stakedBalance.toNumber()}
-						decimals={2}
-						numberSuffix=" YAXIS"
-					/>
+					<Row align="middle" style={{ borderBottom: 'none' }}>
+						<img
+							src={YAXIS.icon}
+							height="24"
+							alt="logo"
+							style={{ marginRight: '6px' }}
+						/>
+						<Value
+							value={stakedBalance.toNumber()}
+							decimals={2}
+							numberSuffix=" YAXIS"
+						/>
+					</Row>
 				</Col>
 			</Row>
 

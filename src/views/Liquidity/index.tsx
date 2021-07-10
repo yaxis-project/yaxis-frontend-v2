@@ -1,13 +1,16 @@
 import React, { useMemo } from 'react'
+import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
 import Page from '../../components/Page/Page'
 import Tooltip from '../../components/Tooltip'
-import { Collapse, Card, Table, Row, Col } from 'antd'
-import info from '../../assets/img/info.svg'
-import './index.less'
+import { Table, TableProps, Row, Col } from 'antd'
+import Card from '../../components/Card'
+import Typography from '../../components/Typography'
+import Collapse from '../../components/Collapse'
+import { InfoCircleOutlined } from '@ant-design/icons'
 import { useContracts } from '../../contexts/Contracts'
 const { Panel } = Collapse
-
+const { Text } = Typography
 const columns = [
 	{
 		title: 'Name',
@@ -36,12 +39,12 @@ const Liquidity: React.FC = () => {
 					<Card
 						title={
 							<Col style={{ fontSize: '18px', fontWeight: 700 }}>
-								Active Liquidity Pools
+								<Text>Active Liquidity Pools</Text>
 							</Col>
 						}
 						bodyStyle={{ padding: 0 }}
 					>
-						<Table
+						<StyledTable
 							columns={columns}
 							dataSource={activePools}
 							pagination={false}
@@ -59,10 +62,12 @@ const Liquidity: React.FC = () => {
 					</Card>
 
 					<Collapse expandIconPosition="right">
-						<Panel
+						<StyledPanel
 							header={
 								<Row gutter={10}>
-									<Col>Legacy Liquidity Pools</Col>
+									<Col>
+										<Text>Legacy Liquidity Pools</Text>
+									</Col>
 									<Col>
 										<Tooltip
 											title={
@@ -70,18 +75,14 @@ const Liquidity: React.FC = () => {
 											}
 											placement={'right'}
 										>
-											<img
-												src={info}
-												height="20"
-												alt="Legacy Liquidity Pools info"
-											/>
+											<StyledInfoIcon alt="Legacy Liquidity Pools info" />
 										</Tooltip>
 									</Col>
 								</Row>
 							}
 							key="1"
 						>
-							<Table
+							<StyledTable
 								columns={columns}
 								dataSource={legacyPools}
 								pagination={false}
@@ -96,7 +97,7 @@ const Liquidity: React.FC = () => {
 									}
 								}}
 							/>
-						</Panel>
+						</StyledPanel>
 					</Collapse>
 				</>
 			</Page>
@@ -105,3 +106,35 @@ const Liquidity: React.FC = () => {
 }
 
 export default Liquidity
+
+const StyledInfoIcon = styled(InfoCircleOutlined)`
+	margin-left: 5px;
+	color: ${(props) => props.theme.secondary.font};
+	font-size: 15px;
+`
+
+const StyledTable = styled(Table)<TableProps<any>>`
+	background: ${(props) => props.theme.secondary.background};
+
+	.ant-table-cell {
+		background: ${(props) => props.theme.secondary.background};
+		color: ${(props) => props.theme.primary.font};
+	}
+
+	.LP-Table-Row {
+		border: 5px solid red;
+		&:hover {
+			cursor: pointer;
+			background-color: #eff9ff;
+		}
+	}
+`
+
+const StyledPanel = styled(Panel)`
+	background: ${(props) => props.theme.secondary.background};
+	border-color: ${(props) => props.theme.secondary.border};
+
+	.ant-collapse {
+		border: none;
+	}
+`

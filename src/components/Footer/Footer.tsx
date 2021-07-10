@@ -16,7 +16,7 @@ const Footer: React.FC = () => (
 const StyledFooter = styled(Layout.Footer)`
 	padding: 0 0 0;
 	width: 100%;
-	background: #eff4f8;
+	background: ${(props) => props.theme.primary.footer};
 	margin-top: 36px;
 `
 const StyledFooterInner = styled.div`

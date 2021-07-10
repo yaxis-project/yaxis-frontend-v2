@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import styled from 'styled-components'
 import { Col } from 'antd'
 import { LanguageContext } from '../../../contexts/Language'
 import phrases from './translations'
@@ -8,13 +9,16 @@ import { useYaxisSupply } from '../../../state/internal/hooks'
 import { usePrices } from '../../../state/prices/hooks'
 import Value from '../../../components/Value'
 import { getBalanceNumber } from '../../../utils/formatBalance'
-import info from '../../../assets/img/info.svg'
+import { InfoCircleOutlined } from '@ant-design/icons'
 import {
 	ExpandableSidePanel,
 	CardRow,
 } from '../../../components/ExpandableSidePanel'
 import { Tooltip } from 'antd'
 import Button from '../../../components/Button'
+import Typography from '../../../components/Typography'
+
+const { SecondaryText } = Typography
 
 interface TooltipRowProps {
 	main: string
@@ -29,7 +33,12 @@ const TooltipRow = ({ main, value }: TooltipRowProps) => (
 			{main}
 		</div>
 		<div>
-			<Value value={value} numberPrefix="$" decimals={2} />
+			<Value
+				value={value}
+				numberPrefix="$"
+				decimals={2}
+				color={'white'}
+			/>
 		</div>
 	</>
 )
@@ -72,13 +81,8 @@ export default function HomeExpandableOverview() {
 								</>
 							}
 						>
-							Total Value Locked{' '}
-							<img
-								style={{ position: 'relative', top: -1 }}
-								src={info}
-								height="15"
-								alt="YAXIS Supply Rewards"
-							/>
+							<SecondaryText>Total Value Locked </SecondaryText>
+							<StyledInfoIcon />
 						</Tooltip>
 					}
 					secondary={
@@ -90,7 +94,7 @@ export default function HomeExpandableOverview() {
 					}
 				/>
 				<CardRow
-					main="Price of YAXIS"
+					main={<SecondaryText>Price of YAXIS</SecondaryText>}
 					secondary={
 						<Value
 							value={prices.yaxis}
@@ -112,7 +116,7 @@ export default function HomeExpandableOverview() {
 				/>
 
 				<CardRow
-					main={'Max YAXIS Supply'}
+					main={<SecondaryText>Max YAXIS Supply</SecondaryText>}
 					secondary={
 						<Value
 							value={
@@ -126,3 +130,12 @@ export default function HomeExpandableOverview() {
 		</>
 	)
 }
+
+const StyledInfoIcon = styled(InfoCircleOutlined)`
+	position: relative;
+	top: 1px;
+	margin-left: 2px;
+	svg {
+		fill: ${(props) => props.theme.secondary.font};
+	}
+`

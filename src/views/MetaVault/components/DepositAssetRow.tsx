@@ -7,8 +7,9 @@ import Input from '../../../components/Input'
 import ApprovalCover from '../../../components/ApprovalCover'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
+import Typography from '../../../components/Typography'
 
-import { Row, Col, Typography, Form } from 'antd'
+import { Row, Col, Form } from 'antd'
 
 const { Text } = Typography
 

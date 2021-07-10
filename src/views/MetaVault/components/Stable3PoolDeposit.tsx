@@ -1,4 +1,5 @@
 import { useState, useContext, useMemo, useCallback } from 'react'
+import styled from 'styled-components'
 import { Currencies3Pool } from '../../../constants/currencies'
 import DepositAssetRow from './DepositAssetRow'
 import { useAllTokenBalances } from '../../../state/wallet/hooks'
@@ -7,7 +8,8 @@ import { useContracts } from '../../../contexts/Contracts'
 import { LanguageContext } from '../../../contexts/Language'
 import phrases from './translations'
 import { reduce } from 'lodash'
-import { Row, Col, Grid, Typography } from 'antd'
+import { Row, Col, Grid } from 'antd'
+import Typography from '../../../components/Typography'
 import { numberToDecimal } from '../../../utils/number'
 import useContractWrite from '../../../hooks/useContractWrite'
 import Button from '../../../components/Button'
@@ -55,14 +57,12 @@ export default function Stable3PoolDeposit({ set3crvValue, value3crv }) {
 		[currencyValues, prices],
 	)
 
-	const {
-		call: handleDeposit3Pool,
-		loading: loadingDeposit3Pool,
-	} = useContractWrite({
-		contractName: 'external.curve3pool',
-		method: 'add_liquidity',
-		description: `get 3CRV`,
-	})
+	const { call: handleDeposit3Pool, loading: loadingDeposit3Pool } =
+		useContractWrite({
+			contractName: 'external.curve3pool',
+			method: 'add_liquidity',
+			description: `get 3CRV`,
+		})
 
 	const handleSubmit = useCallback(async () => {
 		try {
@@ -108,7 +108,7 @@ export default function Stable3PoolDeposit({ set3crvValue, value3crv }) {
 			>
 				<Col xs={24} sm={24} md={12}>
 					<Row justify="center">
-						<ArrowDownOutlined style={{ fontSize: '40px' }} />
+						<StyledArrowDownOutlined />
 					</Row>
 				</Col>
 				<Col xs={24} sm={24} md={4}>
@@ -128,3 +128,8 @@ export default function Stable3PoolDeposit({ set3crvValue, value3crv }) {
 		</>
 	)
 }
+
+const StyledArrowDownOutlined = styled(ArrowDownOutlined)`
+	color: ${(props) => props.theme.primary.font};
+	font-size: 40px;
+`

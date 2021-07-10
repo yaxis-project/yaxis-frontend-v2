@@ -104,7 +104,7 @@ const StyledButton = styled(Button)`
 
 const ModalTitle = styled.div`
 	align-items: center;
-	color: ${(props) => props.theme.color.grey[600]};
+	color: ${(props) => props.theme.colors.grey[600]};
 	display: flex;
 	font-size: 18px;
 	font-weight: 700;

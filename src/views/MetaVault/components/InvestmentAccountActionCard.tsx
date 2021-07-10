@@ -1,6 +1,8 @@
-import { Card, Tabs } from 'antd'
+import styled from 'styled-components'
+import Tabs from '../../../components/Tabs'
 import DepositTable from './DepositTable'
 import WithdrawTable from './WithdrawTable'
+import Card from '../../../components/Card'
 
 const { TabPane } = Tabs
 
@@ -9,7 +11,7 @@ const { TabPane } = Tabs
  */
 export default function InvestmentAccountActionCard() {
 	return (
-		<Card className="investment-account-action-card">
+		<StyledCard>
 			<Tabs defaultActiveKey="1">
 				<TabPane tab="Deposit" key="1">
 					<DepositTable />
@@ -18,6 +20,12 @@ export default function InvestmentAccountActionCard() {
 					<WithdrawTable />
 				</TabPane>
 			</Tabs>
-		</Card>
+		</StyledCard>
 	)
 }
+
+const StyledCard = styled(Card)`
+	.ant-card-body {
+		padding: 0;
+	}
+`

@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react'
 import Page from '../../components/Page/Page'
-import { Row, Col, Card } from 'antd'
+import { Row, Col } from 'antd'
+import Card from '../../components/Card'
 import useWeb3Provider from '../../hooks/useWeb3Provider'
 import { Redirect } from 'react-router-dom'
 import { DetailOverviewCard } from '../../components/DetailOverviewCard'

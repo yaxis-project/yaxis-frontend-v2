@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { Typography } from 'antd'
 import { LanguageContext } from '../../../contexts/Language'
 import phrases from './translations'

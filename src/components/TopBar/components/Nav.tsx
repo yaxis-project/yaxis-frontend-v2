@@ -87,7 +87,7 @@ const ItemGroup = styled(Menu.ItemGroup)`
 `
 
 const StyledLink = styled(NavLink)`
-	color: ${(props) => props.theme.color.white} !important;
+	color: ${(props) => props.theme.colors.white} !important;
 	font-weight: 600;
 	font-size: 18px;
 	text-decoration: none;

@@ -1,5 +1,7 @@
 import styled from 'styled-components'
-import { Menu, Row, Col, Divider, Typography } from 'antd'
+import { Menu, Row, Col } from 'antd'
+import Divider from '../../Divider'
+import Typography from '../../Typography'
 import {
 	CopyOutlined,
 	BlockOutlined,
@@ -16,10 +18,10 @@ const StyledRow = styled(Row)<any>`
 	margin-right: 10px;
 `
 const StyledText = styled.div<any>`
+	color: ${(props) => props.theme.secondary.font};
 	text-align: center;
 	font-size: ${(props) => (props.mobile ? '1.1' : '1')}em;
 	margin-left: 10px;
-	color: rgba(0, 0, 0, 0.45);
 `
 
 const StyledCol = styled(Col)<any>`
@@ -29,12 +31,14 @@ const StyledCol = styled(Col)<any>`
 `
 
 const AccountText = styled.div`
+	color: ${(props) => props.theme.secondary.font};
 	font-weight: bold;
 	font-size: 1.2em;
 	margin-left: -8px;
 `
 
 const AccountIdText = styled.div<any>`
+	color: ${(props) => props.theme.secondary.font};
 	font-weight: bold;
 	font-size: 1em;
 	color: #016eac;

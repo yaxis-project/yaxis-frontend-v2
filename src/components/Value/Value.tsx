@@ -13,6 +13,7 @@ interface ValueProps {
 	extra?: string
 	secondary?: boolean
 	suffix?: string
+	color?: string
 }
 
 /**
@@ -29,6 +30,7 @@ const Value: React.FC<ValueProps> = ({
 	extra,
 	secondary,
 	suffix,
+	color,
 }) => {
 	const [start, updateStart] = useState(0)
 	const [end, updateEnd] = useState(0)
@@ -41,7 +43,12 @@ const Value: React.FC<ValueProps> = ({
 	}, [value, end])
 
 	return (
-		<StyledValue inline={inline} fontSize={fontSize} secondary={secondary}>
+		<StyledValue
+			inline={inline}
+			fontSize={fontSize}
+			secondary={secondary}
+			color={color}
+		>
 			{numberPrefix && <span className="prefix">{numberPrefix}</span>}
 			{typeof value == 'string' ? (
 				value
@@ -75,21 +82,20 @@ const StyledValue = styled.div<{
 	inline?: boolean
 	fontSize?: string
 	secondary?: boolean
+	color?: string
 }>`
 	font-size: ${({ fontSize }) => fontSize ?? '18px'};
 	${(props) => (props.secondary ? '' : 'font-weight: 700;')}
 	display: ${({ inline }) => inline && 'inline-block'};
+	color: ${(props) => (props.color ? props.color : props.theme.primary.font)};
 
 	.extra {
 		font-size: 14px;
 		color: rgba(17, 51, 83, 0.6);
 		font-weight: 400;
 		margin-left: 10px;
+		color: ${(props) => props.theme.primary.font};
 	}
 `
-// color: ${(props) =>
-// 	props.secondary
-// 		? props.theme.color.secondary.grey
-// 		: props.theme.color.black};
 
 export default Value

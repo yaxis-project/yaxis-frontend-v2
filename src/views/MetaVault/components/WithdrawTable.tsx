@@ -1,5 +1,5 @@
 import { useState, useContext, useCallback, useMemo } from 'react'
-import { Row, Col, Typography, Divider, Form, Tooltip } from 'antd'
+import { Row, Col, Form, Tooltip } from 'antd'
 import { threeCRV, MVLT } from '../../../constants/currencies'
 import { numberToDecimal } from '../../../utils/number'
 import { LanguageContext } from '../../../contexts/Language'
@@ -7,6 +7,8 @@ import phrases from './translations'
 import BigNumber from 'bignumber.js'
 import useContractWrite from '../../../hooks/useContractWrite'
 import Value from '../../../components/Value'
+import Typography from '../../../components/Typography'
+import Divider from '../../../components/Divider'
 import Button from '../../../components/Button'
 import { ArrowDownOutlined } from '@ant-design/icons'
 import info from '../../../assets/img/info.svg'
@@ -154,10 +156,9 @@ export default function WithdrawTable() {
 				</Col>
 			</WithdrawRow>
 
-			<DividerGroup>
-				<Divider />
+			<Divider>
 				<DividerArrow />
-			</DividerGroup>
+			</Divider>
 
 			<WithdrawRow>
 				<Col xs={24} sm={8}>
@@ -207,10 +208,9 @@ export default function WithdrawTable() {
 				</Col>
 			</WithdrawRow>
 
-			<DividerGroup>
-				<Divider />
+			<Divider>
 				<DividerArrow />
-			</DividerGroup>
+			</Divider>
 
 			<WithdrawRow>
 				<Col xs={24} sm={8}>
@@ -229,17 +229,11 @@ const WithdrawRow = styled(Row)`
 	position: relative;
 `
 
-const DividerGroup = styled.div`
-	position: relative;
-`
 const DividerArrow = styled(ArrowDownOutlined)`
-	position: absolute;
 	font-size: 24px;
-	top: 0;
-	transform: translateY(-45%);
-	left: 50%;
-	background: white;
-	border: 8px solid white;
+	background: ${(props) => props.theme.secondary.background};
+	border: 8px solid ${(props) => props.theme.secondary.background};
+	color: ${(props) => props.theme.primary.font};
 	svg {
 		opacity: 0.3;
 	}

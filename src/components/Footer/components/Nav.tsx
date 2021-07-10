@@ -123,7 +123,7 @@ const HoverableIcon = styled(Icon)`
 
 const StyledLink = styled.a`
 	display: inline-block;
-	color: ${(props) => props.theme.color.primary.main};
+	color: ${(props) => props.theme.primary.main};
 	padding-left: ${(props) => props.theme.spacing[3]}px;
 	padding-right: ${(props) => props.theme.spacing[3]}px;
 	text-decoration: none;
@@ -139,9 +139,10 @@ const StyledLinkButton = styled.a`
 	border: 1px solid grey;
 	border-radius: 18px;
 	text-align: center;
+	background: ${(props) => props.theme.colors.aliceBlue};
 
 	&:hover {
-		border: 1px solid ${(props) => props.theme.color.primary.hover};
+		border: 1px solid ${(props) => props.theme.primary.hover};
 	}
 `
 

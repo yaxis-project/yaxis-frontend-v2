@@ -10,7 +10,9 @@ import Button from '../../../components/Button'
 import Input from '../../../components/Input'
 import { LanguageContext } from '../../../contexts/Language'
 import phrases from './translations'
-import { Row, Col, Typography, Card, Form, Result, Spin } from 'antd'
+import Typography from '../../../components/Typography'
+import Card from '../../../components/Card'
+import { Row, Col, Form, Result, Spin } from 'antd'
 import BigNumber from 'bignumber.js'
 import { getBalanceNumber } from '../../../utils/formatBalance'
 import { useApprovals } from '../../../state/wallet/hooks'
@@ -196,7 +198,11 @@ export default function ApprovalWrapper() {
 				<Row justify="center">
 					<Result
 						status="warning"
-						title="Connect a wallet to start earning rewards."
+						title={
+							<Text>
+								Connect a wallet to start earning rewards.
+							</Text>
+						}
 						style={{ height: '202px' }}
 					/>
 				</Row>
@@ -220,8 +226,10 @@ export default function ApprovalWrapper() {
 				<>
 					<Row justify="center" style={{ paddingBottom: '20px' }}>
 						<Col>
-							To start staking, first approve the Rewards contract
-							to use your MVLT.
+							<Text>
+								To start staking, first approve the Rewards
+								contract to use your MVLT.
+							</Text>
 						</Col>
 					</Row>
 					<Row justify="center">
@@ -248,7 +256,14 @@ export default function ApprovalWrapper() {
 	}, [account, loadingAllowance, allowance, loading, onApprove, t, contracts])
 
 	return (
-		<Card className="staking-card" title={<strong>{t('Staking')}</strong>}>
+		<Card
+			className="staking-card"
+			title={
+				<Text>
+					<strong>{t('Staking')}</strong>
+				</Text>
+			}
+		>
 			{body}
 		</Card>
 	)

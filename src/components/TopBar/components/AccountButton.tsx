@@ -14,6 +14,7 @@ import {
 } from '../../../connectors'
 import { useWeb3React } from '@web3-react/core'
 import { useClearPendingTransactions } from '../../../state/transactions/hooks'
+import ThemeToggle from '../../ThemeToggle'
 
 interface AccountButtonProps {}
 
@@ -46,6 +47,9 @@ const AccountButton: React.FC<AccountButtonProps> = (props) => {
 
 	return (
 		<StyledAccountButton>
+			<Col>
+				<ThemeToggle></ThemeToggle>
+			</Col>
 			<Col>
 				{!account ? (
 					<StyledButton onClick={handleUnlockClick}>
@@ -101,9 +105,11 @@ const AccountButton: React.FC<AccountButtonProps> = (props) => {
 
 const StyledText = styled(Menu.Item)`
 	font-size: 1.1em;
+	color: ${(props) => props.theme.primary.main};
 `
 
 const StyledMenu = styled(Menu)`
+	background: ${(props) => props.theme.secondary.background};
 	margin: 8px -2px 0 0;
 	border: 2px solid lightgrey;
 `

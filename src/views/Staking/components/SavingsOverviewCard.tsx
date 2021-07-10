@@ -1,5 +1,6 @@
 import { useContext } from 'react'
-import { Typography, Tooltip, Row } from 'antd'
+import styled from 'styled-components'
+import { Tooltip, Row } from 'antd'
 import { LanguageContext } from '../../../contexts/Language'
 import Value from '../../../components/Value'
 import { useAPY } from '../../../state/internal/hooks'
@@ -7,7 +8,8 @@ import phrases from './translations'
 import { DetailOverviewCard } from '../../../components/DetailOverviewCard'
 import Claim from '../../../components/Claim'
 import { CardRow } from '../../../components/ExpandableSidePanel'
-import info from '../../../assets/img/info.svg'
+import Typography from '../../../components/Typography'
+import { InfoCircleOutlined } from '@ant-design/icons'
 import APYCalculator from '../../../components/APYCalculator'
 import BigNumber from 'bignumber.js'
 
@@ -28,7 +30,12 @@ const TooltipRow = ({ main, value, suffix }: TooltipRowProps) => (
 			{main}
 		</div>
 		<Row>
-			<Value value={value} numberSuffix="%" decimals={2} />
+			<Value
+				value={value}
+				numberSuffix="%"
+				decimals={2}
+				color={'white'}
+			/>
 			<span style={{ fontSize: '10px' }}>{suffix}</span>
 		</Row>
 	</>
@@ -70,12 +77,7 @@ const SavingsOverviewCard: React.FC<Props> = ({
 						}
 					>
 						<Text type="secondary">Total APR </Text>
-						<img
-							style={{ position: 'relative', top: -1 }}
-							src={info}
-							height="15"
-							alt="YAXIS Supply Rewards"
-						/>
+						<StyledInfoIcon alt="YAXIS Rewards" />
 					</Tooltip>
 				}
 				secondary={
@@ -103,12 +105,7 @@ const SavingsOverviewCard: React.FC<Props> = ({
 								}
 							>
 								<Text type="secondary">Total APY </Text>
-								<img
-									style={{ position: 'relative', top: -1 }}
-									src={info}
-									height="15"
-									alt="YAXIS Supply Rewards"
-								/>
+								<StyledInfoIcon alt="YAXIS Rewards" />
 							</Tooltip>
 						</Row>
 						<Row>
@@ -131,3 +128,9 @@ const SavingsOverviewCard: React.FC<Props> = ({
 	)
 }
 export default SavingsOverviewCard
+
+const StyledInfoIcon = styled(InfoCircleOutlined)`
+	margin-left: 5px;
+	color: ${(props) => props.theme.secondary.font};
+	font-size: 15px;
+`

@@ -1,8 +1,10 @@
 import logo from '../../../assets/img/logo-ui.svg'
-import { Row, Col, Typography, Card } from 'antd'
+import { Row, Col } from 'antd'
 import styled from 'styled-components'
+import Card from '../../../components/Card'
+import Typography from '../../../components/Typography'
 
-const { Text, Title } = Typography
+const { SecondaryText, Title } = Typography
 
 interface AccountOverviewCardProps {
 	loading: boolean
@@ -28,6 +30,7 @@ const StyledTitle = styled.div`
 	font-weight: 600;
 	line-height: 29px;
 	letter-spacing: 0em;
+	color: ${(props) => props.theme.primary.font};
 `
 
 /**
@@ -52,7 +55,9 @@ export default function AccountOverviewCard(props: AccountOverviewCardProps) {
 						</Col>
 					</Row>
 					<Row>
-						<Text type="secondary">{secondaryText}</Text>
+						<SecondaryText type="secondary">
+							{secondaryText}
+						</SecondaryText>
 					</Row>
 				</Col>
 				<Col xs={24} sm={24} md={7}>

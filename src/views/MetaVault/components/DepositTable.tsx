@@ -7,12 +7,13 @@ import { usePrices } from '../../../state/prices/hooks'
 import { LanguageContext } from '../../../contexts/Language'
 import phrases from './translations'
 import { reduce } from 'lodash'
-import { Row, Col, Grid, Typography } from 'antd'
+import { Row, Col, Grid } from 'antd'
 import styled from 'styled-components'
 import { numberToDecimal } from '../../../utils/number'
 import useContractWrite from '../../../hooks/useContractWrite'
 import { useContracts } from '../../../contexts/Contracts'
 import Button from '../../../components/Button'
+import Typography from '../../../components/Typography'
 import {
 	CurrencyValues,
 	handleFormInputChange,

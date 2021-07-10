@@ -1,5 +1,6 @@
 import React from 'react'
-import { Typography, Card } from 'antd'
+import Typography from '../../components/Typography'
+import Card from '../../components/Card'
 import './index.less'
 
 const { Title } = Typography
@@ -7,7 +8,6 @@ const { Title } = Typography
 const gridStyle = {
 	width: '100%',
 }
-
 
 interface DetailOverviewCardRowProps {
 	children: React.ReactNode

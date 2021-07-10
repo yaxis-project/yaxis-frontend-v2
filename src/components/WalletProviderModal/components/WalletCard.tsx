@@ -43,7 +43,7 @@ const WalletCard: React.FC<WalletCardProps> = ({ config }) => {
 export default WalletCard
 
 const StyledCardTitle = styled.div`
-	color: ${(props) => props.theme.color.grey[600]};
+	color: ${(props) => props.theme.colors.grey[600]};
 	font-size: 14px;
 	font-weight: 700;
 	text-align: center;
@@ -51,7 +51,7 @@ const StyledCardTitle = styled.div`
 `
 
 const CardIcon = styled.div`
-	background-color: ${(props) => props.theme.color.grey[200]};
+	background-color: ${(props) => props.theme.colors.grey[200]};
 	font-size: 36px;
 	height: 80px;
 	width: 80px;
@@ -59,7 +59,7 @@ const CardIcon = styled.div`
 	align-items: center;
 	display: flex;
 	justify-content: center;
-	box-shadow: inset 4px 4px 8px ${(props) => props.theme.color.grey[300]},
-		inset -6px -6px 12px ${(props) => props.theme.color.grey[100]};
+	box-shadow: inset 4px 4px 8px ${(props) => props.theme.colors.grey[300]},
+		inset -6px -6px 12px ${(props) => props.theme.colors.grey[100]};
 	margin: 0 auto ${(props) => props.theme.spacing[1]}px;
 `

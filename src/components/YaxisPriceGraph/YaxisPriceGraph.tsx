@@ -5,14 +5,15 @@ import React, {
 	useMemo,
 	useCallback,
 } from 'react'
-import { Card, Radio, Row, Col } from 'antd'
+import { Radio, Row, Col } from 'antd'
+import Card from '../Card'
 import { LoadingOutlined } from '@ant-design/icons'
 import { getYAXPriceData, SelectableDay, dayOptions } from './utils'
 import useWindowWidth from '../../hooks/useWindowWidth'
 import styled from 'styled-components'
 import { usePrices } from '../../state/prices/hooks'
 import moment from 'moment'
-import theme from '../../theme'
+import { baseTheme } from '../../theme'
 import BigNumber from 'bignumber.js'
 
 import {
@@ -24,6 +25,15 @@ import {
 
 const RadioGroup = styled(Radio.Group)`
 	.ant-radio-button-wrapper {
+		${(props) =>
+			props.theme.type === 'dark'
+				? `background: ${props.theme.secondary.background};`
+				: `background: ${props.theme.primary.background};`}
+		${(props) =>
+			props.theme.type === 'dark'
+				? `color: ${props.theme.primary.font};`
+				: ''}
+		
 		border: 0px;
 		border-radius: 0px;
 		padding: 0 10px;
@@ -41,6 +51,8 @@ const RadioGroup = styled(Radio.Group)`
 const StyledCard = styled(Card)`
 	margin-bottom: 16px;
 	height: 357px;
+	background: ${(props) => props.theme.secondary.background};
+	border-color: ${(props) => props.theme.secondary.border};
 
 	.loading-icon {
 		position: absolute;
@@ -59,6 +71,13 @@ const StyledCard = styled(Card)`
 	.ant-card-body {
 		padding: 0 !important;
 	}
+
+	.ant-card-head {
+		border-color: ${(props) => props.theme.secondary.border};
+	}
+`
+const StyledText = styled.span`
+	color: ${(props) => props.theme.primary.font};
 `
 
 /**
@@ -78,7 +97,7 @@ const PriceGraph: React.FC = () => {
 	const chartWidth = useMemo(() => {
 		if (windowWidth < 725) return windowWidth
 		if (windowWidth < 992) return Math.round(windowWidth * 0.74)
-		if (windowWidth < theme.siteWidth + 300)
+		if (windowWidth < baseTheme.siteWidth + 300)
 			return Math.round(windowWidth * 0.53)
 
 		return 733
@@ -107,9 +126,15 @@ const PriceGraph: React.FC = () => {
 			title={
 				<Row>
 					<Col style={{ paddingRight: '10px' }}>
-						<strong>YAXIS Price:</strong>
+						<StyledText>
+							<strong>YAXIS Price:</strong>
+						</StyledText>
 					</Col>
-					<Col>${new BigNumber(yaxisPrice).toFixed(2)}</Col>
+					<Col>
+						<StyledText>
+							${new BigNumber(yaxisPrice).toFixed(2)}
+						</StyledText>
+					</Col>
 				</Row>
 			}
 			extra={

@@ -8,8 +8,9 @@ import Input from '../../../components/Input'
 import styled from 'styled-components'
 import { useContracts } from '../../../contexts/Contracts'
 import { useSingleCallResult } from '../../../state/onchain/hooks'
+import Typography from '../../../components/Typography'
 
-import { Row, Col, Typography, Form } from 'antd'
+import { Row, Col, Form } from 'antd'
 
 const { Text } = Typography
 

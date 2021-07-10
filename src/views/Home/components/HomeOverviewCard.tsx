@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import styled from 'styled-components'
-import { Typography, Col, Tooltip } from 'antd'
+import { Col, Tooltip } from 'antd'
+import Typography from '../../../components/Typography'
 import { LanguageContext } from '../../../contexts/Language'
 import phrases from './translations'
 import {
@@ -9,7 +10,7 @@ import {
 } from '../../../components/DetailOverviewCard'
 import Value from '../../../components/Value'
 import { useReturns } from '../../../state/wallet/hooks'
-import info from '../../../assets/img/info.svg'
+import { InfoCircleOutlined } from '@ant-design/icons'
 
 const { Text } = Typography
 
@@ -26,7 +27,12 @@ const TooltipRow = ({ main, value }: TooltipRowProps) => (
 			{main}
 		</div>
 		<div>
-			<Value value={value} numberPrefix="$" decimals={2} />
+			<Value
+				value={value}
+				numberPrefix="$"
+				decimals={2}
+				color={'white'}
+			/>
 		</div>
 	</>
 )
@@ -98,16 +104,7 @@ export default function HomeOverviewCard() {
 							</>
 						}
 					>
-						<img
-							style={{
-								position: 'relative',
-								top: -1,
-								marginLeft: '5px',
-							}}
-							src={info}
-							height="15"
-							alt="YAXIS Rewards"
-						/>
+						<StyledInfoIcon alt="YAXIS Rewards" />
 					</Tooltip>
 				</StyledText>
 				<Col>
@@ -126,4 +123,10 @@ const StyledText = styled(Text)`
 	@media only screen and (max-width: 600px) {
 		margin-right: 55px;
 	}
+`
+
+const StyledInfoIcon = styled(InfoCircleOutlined)`
+	margin-left: 5px;
+	color: ${(props) => props.theme.secondary.font};
+	font-size: 15px;
 `

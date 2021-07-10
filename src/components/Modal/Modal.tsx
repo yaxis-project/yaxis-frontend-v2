@@ -1,7 +1,6 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
-import { Card } from 'antd'
-
+import Card from '../Card'
 
 export interface ModalProps {
 	onDismiss?: () => void

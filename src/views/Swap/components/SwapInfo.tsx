@@ -10,10 +10,10 @@ const StyledCollapse = styled(Collapse)<any>`
 	${(props) =>
 		props.active
 			? `
-			border: 1px solid ${props.theme.color.primary.main};
+			border: 1px solid ${props.theme.primary.main};
 	.ant-collapse-item {
 		color: white;
-		background: ${props.theme.color.primary.main};
+		background: ${props.theme.primary.main};
 		transition: background 0.5s;
 	}
 	.ant-collapse-header.ant-collapse-header {
@@ -335,11 +335,11 @@ const Body = styled(Paragraph)`
 `
 
 const TextLink = styled.a`
-	color: ${(props) => props.theme.color.primary.main};
+	color: ${(props) => props.theme.primary.main};
 	font-weight: 600;
 `
 
 const StyledNavLink = styled(NavLink)`
-	color: ${(props) => props.theme.color.primary.main};
+	color: ${(props) => props.theme.primary.main};
 	font-weight: 600;
 `

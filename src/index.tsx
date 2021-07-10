@@ -4,8 +4,7 @@ import store from './state'
 import { Provider } from 'react-redux'
 import App from './App'
 import { getLibrary } from './connectors'
-import { ThemeProvider } from 'styled-components'
-import theme from './theme'
+import { StatefulThemeProvider } from './theme'
 import './index.less'
 import { Web3ReactProvider, createWeb3ReactRoot } from '@web3-react/core'
 import { BrowserRouter as Router } from 'react-router-dom'
@@ -41,13 +40,13 @@ ReactDOM.render(
 					<ContractsProvider>
 						<Updaters>
 							<LanguageProvider>
-								<ThemeProvider theme={theme}>
+								<StatefulThemeProvider>
 									<ModalsProvider>
 										<Router>
 											<App />
 										</Router>
 									</ModalsProvider>
-								</ThemeProvider>
+								</StatefulThemeProvider>
 							</LanguageProvider>
 						</Updaters>
 					</ContractsProvider>

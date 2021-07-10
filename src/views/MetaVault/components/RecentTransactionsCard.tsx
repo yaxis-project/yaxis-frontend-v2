@@ -1,5 +1,7 @@
 import { useContext, useMemo, useState } from 'react'
-import { Typography, Card, Button, Row, Col, Pagination } from 'antd'
+import { Button, Row, Col, Pagination } from 'antd'
+import Card from '../../../components/Card'
+import Typography from '../../../components/Typography'
 import { CloseOutlined } from '@ant-design/icons'
 import transactionIn from '../../../assets/img/icons/transaction-in.svg'
 import transactionOut from '../../../assets/img/icons/transaction-out.svg'

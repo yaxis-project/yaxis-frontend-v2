@@ -1,14 +1,16 @@
 import React, { useContext } from 'react'
+import styled from 'styled-components'
 import { useAPY } from '../../../state/internal/hooks'
 import { LanguageContext } from '../../../contexts/Language'
 import phrases from './translations'
-import { Typography, Tooltip, Row } from 'antd'
+import { Tooltip, Row } from 'antd'
 import APYCalculator from '../../../components/APYCalculator'
+import Typography from '../../../components/Typography'
 import { DetailOverviewCard } from '../../../components/DetailOverviewCard'
 import Value from '../../../components/Value'
 import { CardRow } from '../../../components/ExpandableSidePanel'
 import Claim from '../../../components/Claim'
-import info from '../../../assets/img/info.svg'
+import { InfoCircleOutlined } from '@ant-design/icons'
 import BigNumber from 'bignumber.js'
 
 const { Text } = Typography
@@ -27,7 +29,12 @@ const TooltipRow = ({ main, value, suffix }: TooltipRowProps) => (
 			{main}
 		</div>
 		<Row>
-			<Value value={value} numberSuffix="%" decimals={2} />
+			<Value
+				value={value}
+				numberSuffix="%"
+				decimals={2}
+				color={'white'}
+			/>
 			<span style={{ fontSize: '10px' }}>{suffix}</span>
 		</Row>
 	</>
@@ -80,12 +87,7 @@ const InvestmentDetailOverview: React.FC<Props> = ({
 						}
 					>
 						<Text type="secondary">Total APR </Text>
-						<img
-							style={{ position: 'relative', top: -1 }}
-							src={info}
-							height="15"
-							alt="YAXIS Supply Rewards"
-						/>
+						<StyledInfoIcon alt="YAXIS Supply Rewards" />
 					</Tooltip>
 				}
 				secondary={
@@ -124,12 +126,7 @@ const InvestmentDetailOverview: React.FC<Props> = ({
 								}
 							>
 								<Text type="secondary">Total APY </Text>
-								<img
-									style={{ position: 'relative', top: -1 }}
-									src={info}
-									height="15"
-									alt="YAXIS Supply Rewards"
-								/>
+								<StyledInfoIcon alt="YAXIS Supply Rewards" />
 							</Tooltip>
 						</Row>
 						<Row>
@@ -153,3 +150,9 @@ const InvestmentDetailOverview: React.FC<Props> = ({
 }
 
 export default InvestmentDetailOverview
+
+const StyledInfoIcon = styled(InfoCircleOutlined)`
+	margin-left: 5px;
+	color: ${(props) => props.theme.secondary.font};
+	font-size: 15px;
+`

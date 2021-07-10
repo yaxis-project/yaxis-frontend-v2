@@ -1,13 +1,14 @@
 import { useContext } from 'react'
 import { Currency, YAXIS, PICKLE } from '../../../constants/currencies'
-
-import theme from '../../../theme'
 import { LanguageContext } from '../../../contexts/Language'
 import phrases from './translations'
 
 import { CheckOutlined } from '@ant-design/icons'
 
-import { Row, Col, Typography, Card, Button, Divider, Radio } from 'antd'
+import { Row, Col, Button, Divider, Radio } from 'antd'
+
+import Card from '../../../components/Card'
+import Typography from '../../../components/Typography'
 
 const { Text } = Typography
 
@@ -69,10 +70,10 @@ const StrategyRow = (props: StrategyRowProps) => {
 	)
 }
 
-const voteButtonStyle = {
-	background: theme.color.primary.main,
-	borderColor: theme.color.primary.main,
-}
+// const voteButtonStyle = {
+// 	background: theme.color.primary.main,
+// 	borderColor: theme.color.primary.main,
+// }
 
 export default function GovernanceCard() {
 	const languages = useContext(LanguageContext)
@@ -97,7 +98,11 @@ export default function GovernanceCard() {
 
 			<Row gutter={gutter} style={{ marginTop: 10 }}>
 				<Col offset={16} span={8}>
-					<Button style={voteButtonStyle} block type="primary">
+					<Button
+						// style={voteButtonStyle}
+						block
+						type="primary"
+					>
 						{phrases['Confirm Vote'][language]}
 					</Button>
 				</Col>

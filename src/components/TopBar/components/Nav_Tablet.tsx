@@ -16,6 +16,7 @@ import {
 import { useWeb3React } from '@web3-react/core'
 
 const StyledMenu = styled(Menu)`
+	background: ${(props) => props.theme.secondary.background};
 	padding: 10px;
 `
 const StyledLink = styled(NavLink)`
@@ -23,6 +24,7 @@ const StyledLink = styled(NavLink)`
 	text-decoration: none;
 `
 const MenuItem = styled(Menu.Item)`
+	color: ${(props) => props.theme.primary.font};
 	height: 38px;
 	font-size: 18px;
 `

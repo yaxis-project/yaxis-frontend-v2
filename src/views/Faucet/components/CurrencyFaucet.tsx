@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import styled from 'styled-components'
-import { Row, Col, Card } from 'antd'
+import { Row, Col } from 'antd'
+import Card from '../../../components/Card'
 import Button from '../../../components/Button'
 import { Currencies } from '../../../constants/currencies'
 import useContractWrite from '../../../hooks/useContractWrite'

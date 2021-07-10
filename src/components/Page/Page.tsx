@@ -27,7 +27,8 @@ const StyledMain = styled.div`
 `
 
 const StyledLayout = styled(Layout)`
-	background: #fafbfd;
+	min-height: 100vh;
+	background: ${(props) => props.theme.primary.background};
 `
 
 const StyledContent = styled(Content)`
@@ -40,13 +41,21 @@ const StyledContent = styled(Content)`
 const BGUnderlay = styled.div`
 	width: 100%;
 	height: 80px;
-	background: linear-gradient(180deg, #016eac 50.17%, #328ec1 100%);
+	background: linear-gradient(
+		180deg,
+		${(props) => props.theme.primary.main} 50.17%,
+		${(props) => props.theme.secondary.main} 100%
+	);
 	position: absolute;
 `
 
 const BGHomeUnderlay = styled(BGUnderlay)`
 	height: 400px;
-	background: linear-gradient(180deg, #016eac 20.17%, #52b2dc 100%);
+	background: linear-gradient(
+		180deg,
+		${(props) => props.theme.primary.main} 20.17%,
+		${(props) => props.theme.secondary.main} 100%
+	);
 `
 
 interface PageProps {

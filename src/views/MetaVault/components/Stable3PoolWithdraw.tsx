@@ -8,9 +8,11 @@ import { useContracts } from '../../../contexts/Contracts'
 import { LanguageContext } from '../../../contexts/Language'
 import phrases from './translations'
 import { reduce } from 'lodash'
-import { Row, Col, Grid, Typography, Divider } from 'antd'
+import Typography from '../../../components/Typography'
+import { Row, Col, Grid } from 'antd'
 import useContractWrite from '../../../hooks/useContractWrite'
 import Button from '../../../components/Button'
+import Divider from '../../../components/Divider'
 import { CurrencyValues, handleFormInputChange } from '../utils'
 import BigNumber from 'bignumber.js'
 
@@ -56,24 +58,22 @@ export default function Stable3PoolWithdraw() {
 		[currencyValues],
 	)
 
-	const {
-		call: handleWithdraw3Pool,
-		loading: loadingWithdraw3Pool,
-	} = useContractWrite({
-		contractName: 'external.curve3pool',
-		method: 'remove_liquidity_imbalance',
-		description: `convert 3CRV`,
-	})
+	const { call: handleWithdraw3Pool, loading: loadingWithdraw3Pool } =
+		useContractWrite({
+			contractName: 'external.curve3pool',
+			method: 'remove_liquidity_imbalance',
+			description: `convert 3CRV`,
+		})
 
 	const usdBalance3CRV = useMemo(
 		() => balance3CRV.multipliedBy(prices?.['3crv']),
 		[balance3CRV, prices],
 	)
 
-	const error = useMemo(() => input3CRV.gt(balance3CRV), [
-		input3CRV,
-		balance3CRV,
-	])
+	const error = useMemo(
+		() => input3CRV.gt(balance3CRV),
+		[input3CRV, balance3CRV],
+	)
 
 	const handleSubmit = useCallback(async () => {
 		try {
@@ -138,7 +138,9 @@ export default function Stable3PoolWithdraw() {
 					</Title>
 				</Col>
 			</Row>
-			<Divider style={{ marginTop: '0' }}>TO</Divider>
+			<Divider style={{ marginTop: '0' }}>
+				<Text>TO</Text>
+			</Divider>
 			{Currencies3Pool.map((currency) => (
 				<PaddedRow key={currency.name}>
 					<WithdrawAssetRow

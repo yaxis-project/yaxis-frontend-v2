@@ -1,7 +1,10 @@
 import React, { useContext, useMemo } from 'react'
 import { LanguageContext } from '../../../contexts/Language'
 import phrases from './translations'
-import { Row, Col, Typography, Card, Divider } from 'antd'
+import Card from '../../../components/Card'
+import Typography from '../../../components/Typography'
+import Divider from '../../../components/Divider'
+import { Row, Col } from 'antd'
 import Button from '../../../components/Button'
 import Value from '../../../components/Value'
 import { LiquidityPool } from '../../../constants/type'
@@ -85,7 +88,11 @@ const LiquidityCard: React.FC<Props> = ({ pool }) => {
 	return (
 		<Card
 			className="liquidity-card"
-			title={<strong>Your Liquidity</strong>}
+			title={
+				<Text>
+					<strong>Your Liquidity</strong>
+				</Text>
+			}
 		>
 			<Row>
 				<TableHeader value={phrases['Asset'][language]} span={9} />
@@ -101,7 +108,9 @@ const LiquidityCard: React.FC<Props> = ({ pool }) => {
 				)}
 				symbol={pool.symbol}
 			/>
-			<Divider style={{ margin: '0' }}>REPRESENTING:</Divider>
+			<Divider style={{ margin: '0' }}>
+				<Text>REPRESENTING:</Text>
+			</Divider>
 			{pool.lpTokens.map(({ tokenId }, i) => (
 				<>
 					<LiquidityRow

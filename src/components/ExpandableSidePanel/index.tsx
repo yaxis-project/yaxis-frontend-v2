@@ -1,5 +1,9 @@
 import React from 'react'
-import { Typography, Collapse, Divider, Row, Col } from 'antd'
+import styled from 'styled-components'
+import { Collapse, Row, Col } from 'antd'
+import Typography from '../../components/Typography'
+import Divider from '../../components/Divider'
+
 const { Text, Title } = Typography
 
 const { Panel } = Collapse
@@ -13,7 +17,7 @@ interface CardRowProps {
 export const CardRow = (props: CardRowProps) => {
 	const { main, secondary, rightContent } = props
 	return (
-		<Row align={'middle'}>
+		<StyledRow align={'middle'}>
 			<Col span={rightContent ? 12 : 24}>
 				<Text
 					style={{
@@ -35,7 +39,7 @@ export const CardRow = (props: CardRowProps) => {
 			</Col>
 			{rightContent && <Col span={12}>{rightContent}</Col>}
 			<Divider plain style={{ margin: 0 }} />
-		</Row>
+		</StyledRow>
 	)
 }
 
@@ -48,15 +52,37 @@ export const ExpandableSidePanel = (props: ExpandableSidePanelProps) => {
 	const { header, children } = props
 	return (
 		<>
-			<Collapse
+			<StyledCollapse
 				className="expandable-overview"
 				defaultActiveKey={['1']}
 				expandIconPosition="right"
 			>
-				<Panel header={header} key="1">
+				<Panel header={<StyledTitle>{header}</StyledTitle>} key="1">
 					{children}
 				</Panel>
-			</Collapse>
+			</StyledCollapse>
 		</>
 	)
 }
+
+const StyledTitle = styled.span`
+	color: ${(props) => props.theme.primary.font};
+`
+
+const StyledCollapse = styled(Collapse)`
+	&&& {
+		background: ${(props) => props.theme.secondary.background};
+		border-color: ${(props) => props.theme.secondary.border};
+	}
+
+	svg {
+		fill: ${(props) => props.theme.primary.font};
+	}
+`
+
+const StyledRow = styled(Row)`
+	&&& {
+		background: ${(props) => props.theme.secondary.background};
+		border-color: ${(props) => props.theme.secondary.border};
+	}
+`

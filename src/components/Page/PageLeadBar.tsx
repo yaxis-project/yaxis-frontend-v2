@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import logo from '../../assets/img/logo-ui.svg'
-import arrow from '../../assets/img/arrow-ui.svg'
+import { LeftOutlined } from '@ant-design/icons'
 import { NavLink } from 'react-router-dom'
-import theme from '../../theme'
+import { baseTheme } from '../../theme'
 import { Row, Col, Typography, Divider, Grid } from 'antd'
 import { LinkOutlined } from '@ant-design/icons'
 const { Title, Text } = Typography
@@ -13,7 +13,11 @@ const StyledMain = styled.div<any>`
 	width: 100%;
 	margin: auto;
 	height: 100%;
-	background: ${(props) => (props.background ? props.background : '#eff9ff')};
+	background: ${(props) => {
+		if (props.background) return props.background
+		if (props.theme.primary.lead) return props.theme.primary.lead
+		return '#eff9ff'
+	}};
 
 	font-size: 1rem;
 
@@ -22,11 +26,56 @@ const StyledMain = styled.div<any>`
 	}
 `
 
+const StyledTitle = styled(Title)`
+	&&& {
+		color: ${(props) => props.theme.primary.font};
+		margin: 0;
+		font-weight: 700;
+		font-size: 1.7em;
+	}
+`
+
+const StyledTitle2 = styled(StyledTitle)`
+	&&& {
+		padding-left: 15px;
+	}
+`
+
+const StyledSecondaryText = styled(Text)`
+	&&& {
+		color: ${(props) => props.theme.secondary.font};
+		font-size: 0.8em;
+	}
+`
+
+const StyledSecondaryText2 = styled(StyledSecondaryText)`
+	&&& {
+		padding: 0 6px;
+	}
+`
+
+const StyledSecondaryText3 = styled(StyledSecondaryText)`
+	&&& {
+		padding-left: 15px;
+	}
+`
+
 const StyledLink = styled.a`
-	color: grey;
-	font-size: 1rem;
-	font-size: 0.8em;
+	color: ${(props) => props.theme.secondary.font};
 	padding-left: 15px;
+`
+const StyledBackArrow = styled(LeftOutlined)`
+	margin: 6px 0 0 0;
+	color: ${(props) => props.theme.primary.font};
+	font-size: 30px;
+`
+
+const StyledDivider = styled(Divider)`
+	height: 80px;
+	${(props) =>
+		props.theme.type === 'dark'
+			? `border-color: ${props.theme.secondary.font};`
+			: ''}
 `
 
 interface PageLeadBarProps {
@@ -61,41 +110,29 @@ const PageLeadBar = (props: PageLeadBarProps) => {
 		!valueInfo
 	)
 		return null
+
 	return (
 		<StyledMain background={background}>
 			<Row
 				style={{
-					maxWidth: theme.siteWidth,
+					maxWidth: baseTheme.siteWidth,
 					margin: 'auto',
 					alignItems: 'center',
 				}}
 				justify="space-between"
 			>
 				<Col xs={3} sm={2} md={2}>
-					<NavLink to="/">
-						<img
-							src={arrow}
-							height="24"
-							alt="logo"
-							style={{ marginLeft: '8px' }}
-						/>
-					</NavLink>
+					<Row>
+						<NavLink to="/">
+							<StyledBackArrow />
+						</NavLink>
+					</Row>
 				</Col>
 				<Col xs={6} sm={4} md={2}>
 					<img src={logo} height="51" alt="logo" />
 				</Col>
 				<Col xs={15} sm={18} md={7}>
-					<Title
-						style={{
-							margin: 0,
-							fontWeight: 700,
-							fontSize: '1.7em',
-							paddingLeft: '15px',
-						}}
-						level={5}
-					>
-						{mainTitle}
-					</Title>
+					<StyledTitle2 level={5}>{mainTitle}</StyledTitle2>
 
 					{secondaryTextLink ? (
 						<StyledLink
@@ -104,28 +141,25 @@ const PageLeadBar = (props: PageLeadBarProps) => {
 							rel="noopener noreferrer"
 						>
 							<LinkOutlined />
-							<span style={{ padding: '0 6px' }}>
+							<StyledSecondaryText2 type="secondary">
 								{secondaryText}
-							</span>
+							</StyledSecondaryText2>
 						</StyledLink>
 					) : (
-						<Text
-							type="secondary"
-							style={{ fontSize: '0.8em', paddingLeft: '15px' }}
-						>
+						<StyledSecondaryText3 type="secondary">
 							{secondaryText}
-						</Text>
+						</StyledSecondaryText3>
 					)}
 				</Col>
 				{md || lg ? (
 					<Col md={1} style={{ marginTop: '8px' }}>
-						<Divider type={'vertical'} style={{ height: '80px' }} />
+						<StyledDivider type={'vertical'} />
 					</Col>
 				) : (
 					<></>
 				)}
 				<Col xs={22} sm={22} md={12} style={{ marginTop: '8px' }}>
-					<Title
+					<StyledTitle
 						style={{
 							margin: 0,
 							fontWeight: 700,
@@ -134,10 +168,10 @@ const PageLeadBar = (props: PageLeadBarProps) => {
 						level={5}
 					>
 						{value}
-					</Title>
-					<Text type="secondary" style={{ fontSize: '0.8em' }}>
+					</StyledTitle>
+					<StyledSecondaryText type="secondary">
 						{valueInfo}
-					</Text>
+					</StyledSecondaryText>
 				</Col>
 			</Row>
 		</StyledMain>
